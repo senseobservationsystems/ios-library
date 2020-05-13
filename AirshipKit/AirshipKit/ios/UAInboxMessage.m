@@ -92,45 +92,45 @@
 #pragma mark -
 #pragma mark Quick Look methods
 
-- (BOOL)waitWithTimeoutInterval:(NSTimeInterval)interval pollingWebView:(UIWebView *)webView {
-    NSDate *timeoutDate = [NSDate dateWithTimeInterval:interval sinceDate:self.date.now];
-
-    // The webView may not have begun loading at this point
-    BOOL loadingStarted = webView.loading;
-    while ([timeoutDate timeIntervalSinceDate:self.date.now] > 0) {
-        if (!loadingStarted && webView.loading) {
-            loadingStarted = YES;
-        } else if (loadingStarted && !webView.loading) {
-            // Break once the webView has transitioned from a loading to non-loading state
-            break;
-        }
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
-                                 beforeDate:[NSDate dateWithTimeInterval:0.1 sinceDate:self.date.now]];
-    }
-
-    return [timeoutDate timeIntervalSinceDate:self.date.now] > 0;
-}
-
-- (id)debugQuickLookObject {
-
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.messageBodyURL];
-
-    UAUserData *userData = [[UAirship inboxUser] getUserDataSync];
-    NSString *auth = [UAUtils userAuthHeaderString:userData];
-    [request setValue:auth forHTTPHeaderField:@"Authorization"];
-
-    // Load the message body, spin the run loop and poll the webView with a 5 second timeout.
-    [webView loadRequest:request];
-    [self waitWithTimeoutInterval:5 pollingWebView:webView];
-
-    // Return a UIImage rendered from the webView
-    UIGraphicsBeginImageContext(webView.bounds.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    [webView.layer renderInContext:context];
-    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return img;
-}
+//- (BOOL)waitWithTimeoutInterval:(NSTimeInterval)interval pollingWebView:(UIWebView *)webView {
+//    NSDate *timeoutDate = [NSDate dateWithTimeInterval:interval sinceDate:self.date.now];
+//
+//    // The webView may not have begun loading at this point
+//    BOOL loadingStarted = webView.loading;
+//    while ([timeoutDate timeIntervalSinceDate:self.date.now] > 0) {
+//        if (!loadingStarted && webView.loading) {
+//            loadingStarted = YES;
+//        } else if (loadingStarted && !webView.loading) {
+//            // Break once the webView has transitioned from a loading to non-loading state
+//            break;
+//        }
+//        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+//                                 beforeDate:[NSDate dateWithTimeInterval:0.1 sinceDate:self.date.now]];
+//    }
+//
+//    return [timeoutDate timeIntervalSinceDate:self.date.now] > 0;
+//}
+//
+//- (id)debugQuickLookObject {
+//
+//    UIWebView *webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.messageBodyURL];
+//
+//    UAUserData *userData = [[UAirship inboxUser] getUserDataSync];
+//    NSString *auth = [UAUtils userAuthHeaderString:userData];
+//    [request setValue:auth forHTTPHeaderField:@"Authorization"];
+//
+//    // Load the message body, spin the run loop and poll the webView with a 5 second timeout.
+//    [webView loadRequest:request];
+//    [self waitWithTimeoutInterval:5 pollingWebView:webView];
+//
+//    // Return a UIImage rendered from the webView
+//    UIGraphicsBeginImageContext(webView.bounds.size);
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    [webView.layer renderInContext:context];
+//    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    return img;
+//}
 
 @end

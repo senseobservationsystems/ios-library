@@ -24,8 +24,8 @@ NSString *const UANativeBridgeDismissCommand = @"dismiss";
 @implementation UABaseNativeBridge
 
 - (void)populateJavascriptEnvironmentIfWhitelisted:(UIView *)webView requestURL:(NSURL *)url completionHandler:(void (^)(void))completionHandler {
-    if (!(([webView isKindOfClass:[UIWebView class]]) || ([webView isKindOfClass:[WKWebView class]]))) {
-        UA_LIMPERR(@"webView must be either UIWebView or WKWebView");
+    if (!(([webView isKindOfClass:[WKWebView class]]))) {
+        UA_LIMPERR(@"webView must be WKWebView");
         return completionHandler();
     }
     
@@ -134,12 +134,10 @@ NSString *const UANativeBridgeDismissCommand = @"dismiss";
         /*
          * Execute the JS we just constructed.
          */
-        if ([webView isKindOfClass:[UIWebView class]]) {
-            [(UIWebView *)webView stringByEvaluatingJavaScriptFromString:js];
-        } else if ([webView isKindOfClass:[WKWebView class]]) {
+        if ([webView isKindOfClass:[WKWebView class]]) {
             [(WKWebView *)webView evaluateJavaScript:js completionHandler:nil];
         } else {
-            UA_LIMPERR(@"webView must be either UIWebView or WKWebView");
+            UA_LIMPERR(@"webView must be WKWebView");
         }
 
         completionHandler();
@@ -168,18 +166,13 @@ NSString *const UANativeBridgeDismissCommand = @"dismiss";
                                webView:(UIView *)webView {
 
     if ([delegate respondsToSelector:@selector(callWithData:withCompletionHandler:)]) {
-        if ([webView isKindOfClass:[UIWebView class]]) {
-            __weak UIWebView *weakWebView = (UIWebView *)webView;
-            [delegate callWithData:data withCompletionHandler:^(NSString *script){
-                [weakWebView stringByEvaluatingJavaScriptFromString:script];
-            }];
-        } else if ([webView isKindOfClass:[WKWebView class]]) {
+        if ([webView isKindOfClass:[WKWebView class]]) {
             __weak WKWebView *weakWebView = (WKWebView *)webView;
             [delegate callWithData:data withCompletionHandler:^(NSString *script){
                 [weakWebView evaluateJavaScript:script completionHandler:nil];
             }];
         } else {
-            UA_LIMPERR(@"webView must be either UIWebView or WKWebView");
+            UA_LIMPERR(@"webView must be WKWebView");
         }
     }
 }
