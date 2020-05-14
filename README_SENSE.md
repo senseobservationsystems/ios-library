@@ -14,9 +14,9 @@ As just said, this version just removes all the UIWebView references of the repo
 
 13th of May 2020. When we were releasing 1.0.z version of the app to Beta. It's the version that contains the update to RN 0.61 (from 0.59) and the switch from react-native-navigation to react-navigation.
 
-## From did we apply the changes?
+## From where did we apply the changes?
 
-We forked from the exact version of Urbain Airship iOS-library that we were using before in the app, 11.1.1. Just to prevent other changes that were not properly tested before.
+We applied our changes on the exact version of Urbain Airship iOS-library that we were using currently in the app, 11.1.1. Just to prevent other changes that were not properly tested before.
 
 ## What is necessary to proceed or get rid of this forked repo?
 
