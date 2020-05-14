@@ -1,3 +1,5 @@
+### For Sense Forked details, please go to ./README_SENSE.md
+
 # Airship iOS SDK
 
 The Airship SDK for iOS provides a simple way to integrate Airship
