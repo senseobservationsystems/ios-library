@@ -4,7 +4,7 @@ In the NiceDay app project: https://github.com/senseobservationsystems/goalie-2-
 
 ## Why do we have this repo forked?
 
-Apple started rejecting apps that use UIWebView. Like other libraries we use (react-native-webview, react-native-gesture-handler, react-native0.61), this library also fixed it by itself. But together with the fix, they made the minimum iOS target to iOS 11. Since we still wanted to support iOS 10 users, what we needed was to get one of the latest iOS 10 supported Urban Airship iOS-library version (11.1.1), and manually remove all the UIWebView references.
+Apple started rejecting apps that use UIWebView. Like other libraries we use (react-native-webview, react-native-gesture-handler, react-native0.61), this library also removed that dependency by itself. But together with the fix, they made the minimum iOS target to iOS 11. Since we still wanted to support iOS 10 users, what we needed was to get one of the latest iOS 10 supported Urban Airship iOS-library version (11.1.1), and manually remove all the UIWebView references.
 
 ## What does this fork version contain in comparison with the root one?
 
