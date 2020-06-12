@@ -1,4 +1,4 @@
-### For Sense Forked details, please go to ./README_SENSE.md
+### For Sense Forked details, please go to [README_SENSE](https://github.com/senseobservationsystems/ios-library/blob/remove-uiwebview-dependency/README_SENSE.md)
 
 # Airship iOS SDK
 
