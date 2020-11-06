@@ -1,3 +1,5 @@
+## NOT USED ANYMORE since we updated UrbanAirship to 9.0.0 in the App.https://github.com/senseobservationsystems/goalie-2-mobile-app/pull/3435
+
 ## Where is this forked repo used?
 
 In the NiceDay app project: https://github.com/senseobservationsystems/goalie-2-mobile-app/
